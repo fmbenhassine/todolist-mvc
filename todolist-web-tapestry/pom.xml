@@ -122,6 +122,9 @@
                 <version>2.1</version>
                 <configuration>
                     <warFile>target/todolist.war</warFile>
+                    <systemProperties>
+                        <JAVA_OPTS>-Xms256m -Xmx512m -XX:MaxPermSize=256m</JAVA_OPTS>
+                    </systemProperties>
                     <path>/</path>
                 </configuration>
             </plugin>
