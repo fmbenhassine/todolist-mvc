@@ -72,10 +72,10 @@ public class TodoAction extends BaseAction {
     }
 
     public String doDelete() {
-        Todo todo = todoService.getTodoById(todoId);
+        Todo todoTmp = todoService.getTodoById(todoId);
         //FIXME the todo should belong to the logged user
-        if (todo != null) {
-            todoService.remove(todo);
+        if (todoTmp != null) {
+            todoService.remove(todoTmp);
             return Action.SUCCESS;
         } else {
             error = MessageFormat.format(getText("no.such.todo"), todoId);

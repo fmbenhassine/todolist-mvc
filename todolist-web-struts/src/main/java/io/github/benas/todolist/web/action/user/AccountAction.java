@@ -92,9 +92,9 @@ public class AccountAction extends BaseAction {
             return ActionSupport.INPUT;
         }
 
-        User user = new User(registrationForm.getName(), registrationForm.getEmail(), registrationForm.getPassword());
-        user = userService.create(user);
-        session.put(TodoListUtils.SESSION_USER, user);
+        User userTmp = new User(registrationForm.getName(), registrationForm.getEmail(), registrationForm.getPassword());
+        userTmp = userService.create(userTmp);
+        session.put(TodoListUtils.SESSION_USER, userTmp);
         return Action.SUCCESS;
     }
 
@@ -164,19 +164,19 @@ public class AccountAction extends BaseAction {
      */
 
     public String doUpdate() {
-        User user = getSessionUser();
+        User userTmp = getSessionUser();
 
         String email = this.user.getEmail();
 
-        if (isAlreadyUsed(email) && isDifferent(user.getEmail())) {
+        if (isAlreadyUsed(email) && isDifferent(userTmp.getEmail())) {
             error = MessageFormat.format(getText("account.email.alreadyUsed"), email);
             return Action.INPUT;
         }
 
-        user.setName(this.user.getName());
-        user.setEmail(email);
-        userService.update(user);
-        session.put(TodoListUtils.SESSION_USER, user);
+        userTmp.setName(this.user.getName());
+        userTmp.setEmail(email);
+        userService.update(userTmp);
+        session.put(TodoListUtils.SESSION_USER, userTmp);
         updateProfileSuccessMessage = getText("account.profile.update.success");
         return Action.SUCCESS;
 
@@ -193,8 +193,8 @@ public class AccountAction extends BaseAction {
      */
 
     public String doDelete() {
-        User user = getSessionUser();
-        userService.remove(user);
+        User userTmp = getSessionUser();
+        userService.remove(userTmp);
 
         invalidateSession();
         return Action.SUCCESS;
@@ -225,8 +225,8 @@ public class AccountAction extends BaseAction {
             return Action.INPUT;
         }
 
-        User user = getSessionUser();
-        if (incorrectCurrentPassword(user)) {
+        User userTmp = getSessionUser();
+        if (incorrectCurrentPassword(userTmp)) {
             errorCurrentPassword = getText("account.password.error");
             error = getText("account.password.error.global");
             return Action.INPUT;
@@ -238,10 +238,10 @@ public class AccountAction extends BaseAction {
             return Action.INPUT;
         }
 
-        user.setPassword(changePasswordForm.getNewPassword());
-        user = userService.update(user);
-        session.put(TodoListUtils.SESSION_USER, user);
-        this.user = user;
+        userTmp.setPassword(changePasswordForm.getNewPassword());
+        userTmp = userService.update(userTmp);
+        session.put(TodoListUtils.SESSION_USER, userTmp);
+        this.user = userTmp;
         updatePasswordSuccessMessage = getText("account.password.update.success");
         return Action.SUCCESS;
     }
