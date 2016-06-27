@@ -81,14 +81,14 @@ public class HighlightTag extends SimpleTagSupport {
         stringBuilder.append(pattern);
         stringBuilder.append(endSpanTag);
 
-        Pattern pattern;
+        Pattern patternTmp;
 
         if (caseSensitive) {
-            pattern = Pattern.compile(this.pattern);
+            patternTmp = Pattern.compile(this.pattern);
         } else {
-            pattern = Pattern.compile(this.pattern, Pattern.CASE_INSENSITIVE);
+            patternTmp = Pattern.compile(this.pattern, Pattern.CASE_INSENSITIVE);
         }
-        Matcher matcher = pattern.matcher(input);
+        Matcher matcher = patternTmp.matcher(input);
 
         return matcher.replaceAll(stringBuilder.toString());
 
