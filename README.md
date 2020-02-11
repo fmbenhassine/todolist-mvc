@@ -1,3 +1,7 @@
+## Project status 
+
+:exclamation: This repo was used for learning purposes. It is *definitely* **NOT** production ready. It is *probably* **NOT** well designed. It is *certainly* **NOT** bug-free :smile: Use it at your own risk :exclamation:
+
 ## Todolist MVC
 
 Todolist MVC is like [TodoMVC][] but for Java Web Frameworks instead of Javascript Frameworks.
